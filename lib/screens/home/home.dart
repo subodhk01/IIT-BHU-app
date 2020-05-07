@@ -47,13 +47,11 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   Future<void> refreshHome() async {
-    setState(() {
-      AppConstants.firstTimeFetching = true;
-    });
     await AppConstants.updateAndPopulateWorkshops();
-    setState(() {
-      AppConstants.firstTimeFetching = false;
-    });
+    if (!this.mounted) {
+      return;
+    }
+    setState(() {});
   }
 
   Future<bool> _onPopHome() async {
